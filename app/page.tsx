@@ -10,15 +10,8 @@ const projects = [
     title: 'AI-Powered Resume Optimization Tool',
     timeline: 'Spring 2025',
     tech: 'Python, Flask, spaCy, PyResparser, PostgreSQL, Snowflake, AWS (S3, Lambda), OpenAI GPT API',
-    description: `This is a full-stack AI-driven web application designed to analyze resumes and job descriptions to enhance job seeker success. I built it to automate resume matching and optimize job application outcomes.\n\n• Used PyResparser and spaCy to extract skills, experiences, and metadata from resumes and job descriptions.\n• Developed an NLP-powered similarity engine (TF-IDF + cosine similarity) to calculate match scores between resumes and job listings.\n• Integrated OpenAI’s GPT API to provide personalized content improvement suggestions like keyword insertion, grammar improvements, and achievement phrasing.\n• Built the frontend in Flask and hosted the app using AWS Lambda and S3, enabling scalable performance.\n• Designed and managed PostgreSQL and Snowflake databases for structured data and user profiles.\n• Achieved over 85% skill extraction accuracy, with match suggestions and updates rendered in under 3 seconds.`,
+    description: `This is a full-stack AI-driven web application designed to analyze resumes and job descriptions to enhance job seeker success. I built it to automate resume matching and optimize job application outcomes.\n\n• Used PyResparser and spaCy to extract skills, experiences, and metadata from resumes and job descriptions.\n• Developed an NLP-powered similarity engine (TF-IDF + cosine similarity) to calculate match scores between resumes and job listings.\n• Integrated OpenAI's GPT API to provide personalized content improvement suggestions like keyword insertion, grammar improvements, and achievement phrasing.\n• Built the frontend in Flask and hosted the app using AWS Lambda and S3, enabling scalable performance.\n• Designed and managed PostgreSQL and Snowflake databases for structured data and user profiles.\n• Achieved over 85% skill extraction accuracy, with match suggestions and updates rendered in under 3 seconds.`,
     result: '🚀 Result: Provided users with actionable insights on resume improvement, matching their profiles to job posts more intelligently and quickly.'
-  },
-  {
-    title: 'Automated Video Processing with YOLO & Custom OCR Engine',
-    timeline: 'Summer 2024',
-    tech: 'Python, YOLOv5, OpenCV, OCR, PostgreSQL, AWS S3, REST APIs',
-    description: `This project focused on extracting container IDs from video frames for a logistics use case.\n\n• Integrated YOLOv5 object detection to detect bounding boxes of containers in real-time video footage.\n• Built a custom OCR engine using OpenCV + pytesseract to extract container numbers from the detected boxes.\n• Images were uploaded to AWS S3, processed via Python, and data extracted from the frames was formatted to JSON.\n• This data was transmitted to a remote server via REST APIs, and stored in a PostgreSQL database for tracking and analysis.`,
-    result: '📦 Result: Automated what was once a manual data entry process for container tracking, saving hours of labor and reducing human error.'
   },
   {
     title: 'School Similarity Matching Model',
@@ -267,22 +260,52 @@ export default function Home() {
       return;
     }
 
-    // Simple mailto fallback - this will open the user's email client
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-    const mailtoLink = `mailto:jahnavisingh6@gmail.com?subject=${subject}&body=${body}`;
+    try {
+      // EmailJS configuration
+      const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_xxxxxxx';
+      const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_xxxxxxx';
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
-    window.location.href = mailtoLink;
+      // Initialize EmailJS with public key
+      emailjs.init(publicKey);
 
-    setFormStatus('success');
-    setFormMessage('Opening your email client... If it doesn\'t open, please email me directly at jahnavisingh6@gmail.com');
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        serviceID,
+        templateID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'jahnavisingh6@gmail.com',
+          subject: `Portfolio Contact from ${formData.name}`,
+        }
+      );
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setFormStatus('idle');
-      setFormMessage('');
-    }, 3000);
+      if (result.status === 200) {
+        setFormStatus('success');
+        setFormMessage('✅ Message sent successfully! I\'ll get back to you soon.');
+
+        // Reset form after success
+        setTimeout(() => {
+          setFormData({ name: '', email: '', message: '' });
+          setFormStatus('idle');
+          setFormMessage('');
+        }, 5000);
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setFormStatus('error');
+      setFormMessage('❌ Failed to send message. Please email me directly at jahnavisingh6@gmail.com');
+
+      // Keep error message visible longer
+      setTimeout(() => {
+        setFormStatus('idle');
+        setFormMessage('');
+      }, 8000);
+    }
   };
 
   return (
