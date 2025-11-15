@@ -1,15 +1,21 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import SkillTooltip from './SkillTooltip';
 
 interface SkillBarProps {
   skill: string;
   percentage: number;
   color: string;
   delay?: number;
+  usedIn?: {
+    company?: string;
+    project: string;
+    icon?: string;
+  }[];
 }
 
-export default function SkillBar({ skill, percentage, color, delay = 0 }: SkillBarProps) {
+export default function SkillBar({ skill, percentage, color, delay = 0, usedIn }: SkillBarProps) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -30,7 +36,7 @@ export default function SkillBar({ skill, percentage, color, delay = 0 }: SkillB
     orange: 'bg-gradient-to-r from-orange-400 to-orange-500',
   };
 
-  return (
+  const content = (
     <div ref={ref} className="mb-4">
       <div className="flex justify-between items-center mb-2">
         <span className="text-sm font-medium text-gray-700">{skill}</span>
@@ -46,4 +52,10 @@ export default function SkillBar({ skill, percentage, color, delay = 0 }: SkillB
       </div>
     </div>
   );
+
+  if (usedIn && usedIn.length > 0) {
+    return <SkillTooltip content={usedIn}>{content}</SkillTooltip>;
+  }
+
+  return content;
 }

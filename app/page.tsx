@@ -72,9 +72,34 @@ const skillCategories = [
     title: 'Programming & Data Science',
     color: 'pink',
     skills: [
-      { name: 'Python (Pandas, NumPy, Scikit-Learn)', percentage: 95 },
-      { name: 'SQL (PostgreSQL, MySQL, Snowflake)', percentage: 90 },
-      { name: 'R & Statistical Computing', percentage: 80 },
+      {
+        name: 'Python (Pandas, NumPy, Scikit-Learn)',
+        percentage: 95,
+        usedIn: [
+          { company: 'BCBS', project: 'Patient Risk Prediction Models', icon: '🏥' },
+          { company: 'Accenture', project: 'SKU Demand Forecasting & ETL Pipelines', icon: '📦' },
+          { company: 'AI4M', project: 'CNN for Quality Control', icon: '💼' },
+          { project: 'AI Resume Optimizer (LLM Integration)', icon: '🚀' },
+        ]
+      },
+      {
+        name: 'SQL (PostgreSQL, MySQL, Snowflake)',
+        percentage: 90,
+        usedIn: [
+          { company: 'BCBS', project: 'EHR Data Extraction & Analysis', icon: '🏥' },
+          { company: 'Accenture', project: 'Inventory Data Processing', icon: '📦' },
+          { company: 'AI4M', project: 'Coating Weight Database', icon: '💼' },
+          { project: 'Resume Optimizer Database', icon: '🚀' },
+        ]
+      },
+      {
+        name: 'R & Statistical Computing',
+        percentage: 80,
+        usedIn: [
+          { company: 'BCBS', project: 'Statistical Analysis & Hypothesis Testing', icon: '🏥' },
+          { company: 'Accenture', project: 'ANOVA & Correlation Analysis', icon: '📦' },
+        ]
+      },
     ],
   },
   {
@@ -82,9 +107,31 @@ const skillCategories = [
     title: 'Machine Learning & AI',
     color: 'purple',
     skills: [
-      { name: 'Supervised & Unsupervised Learning', percentage: 92 },
-      { name: 'Deep Learning (PyTorch, TensorFlow, CNN)', percentage: 88 },
-      { name: 'NLP & LLMs (spaCy, LangChain, GPT APIs)', percentage: 85 },
+      {
+        name: 'Supervised & Unsupervised Learning',
+        percentage: 92,
+        usedIn: [
+          { company: 'BCBS', project: 'Logistic Regression, Random Forest, XGBoost', icon: '🏥' },
+          { company: 'Accenture', project: 'Linear Regression, Gradient Boosting', icon: '📦' },
+          { project: 'School Similarity Model (KNN, K-Means)', icon: '🎓' },
+        ]
+      },
+      {
+        name: 'Deep Learning (PyTorch, TensorFlow, CNN)',
+        percentage: 88,
+        usedIn: [
+          { company: 'AI4M', project: 'Regression CNN for Coating Estimation', icon: '💼' },
+          { company: 'AI4M', project: 'Segmentation Models for Defect Detection', icon: '💼' },
+        ]
+      },
+      {
+        name: 'NLP & LLMs (spaCy, LangChain, GPT APIs)',
+        percentage: 85,
+        usedIn: [
+          { project: 'AI Resume Optimizer (TF-IDF, OpenAI GPT)', icon: '🚀' },
+          { project: 'Resume Parsing (spaCy, PyResparser)', icon: '🚀' },
+        ]
+      },
     ],
   },
   {
@@ -92,9 +139,32 @@ const skillCategories = [
     title: 'Data Visualization & BI',
     color: 'orange',
     skills: [
-      { name: 'Tableau & Power BI', percentage: 90 },
-      { name: 'Python Visualization (Matplotlib, Seaborn)', percentage: 88 },
-      { name: 'Advanced Excel & Data Storytelling', percentage: 85 },
+      {
+        name: 'Tableau & Power BI',
+        percentage: 90,
+        usedIn: [
+          { company: 'BCBS', project: 'Patient Risk Dashboards (Power BI)', icon: '🏥' },
+          { company: 'Accenture', project: 'Demand Forecasting Dashboards (Tableau)', icon: '📦' },
+          { project: 'Coffee Shop Analytics (11+ Dashboards)', icon: '☕' },
+        ]
+      },
+      {
+        name: 'Python Visualization (Matplotlib, Seaborn)',
+        percentage: 88,
+        usedIn: [
+          { company: 'BCBS', project: 'Model Performance Visualization', icon: '🏥' },
+          { company: 'Accenture', project: 'Sales Trend Analysis', icon: '📦' },
+          { project: 'School Clustering Visualization (t-SNE)', icon: '🎓' },
+        ]
+      },
+      {
+        name: 'Advanced Excel & Data Storytelling',
+        percentage: 85,
+        usedIn: [
+          { company: 'Accenture', project: 'Stakeholder Reporting', icon: '📦' },
+          { project: 'Coffee Shop ETL (Power Query)', icon: '☕' },
+        ]
+      },
     ],
   },
   {
@@ -102,9 +172,32 @@ const skillCategories = [
     title: 'Data Engineering & Cloud',
     color: 'pink',
     skills: [
-      { name: 'AWS (S3, Lambda, SageMaker, Redshift)', percentage: 87 },
-      { name: 'ETL Pipelines (Airflow, SSIS, FastAPI)', percentage: 85 },
-      { name: 'Data Warehousing (Snowflake, Databricks)', percentage: 82 },
+      {
+        name: 'AWS (S3, Lambda, SageMaker, Redshift)',
+        percentage: 87,
+        usedIn: [
+          { company: 'BCBS', project: 'Data Lake & Model Monitoring (S3, SageMaker)', icon: '🏥' },
+          { company: 'AI4M', project: 'Report Storage & Alerts (S3, Lambda)', icon: '💼' },
+          { project: 'Resume Optimizer Deployment (Lambda, S3)', icon: '🚀' },
+        ]
+      },
+      {
+        name: 'ETL Pipelines (Airflow, SSIS, FastAPI)',
+        percentage: 85,
+        usedIn: [
+          { company: 'BCBS', project: 'Clinical Data ETL (SSIS)', icon: '🏥' },
+          { company: 'Accenture', project: 'Automated Data Pipelines (Python)', icon: '📦' },
+          { project: 'Model Deployment (FastAPI/Flask)', icon: '🚀' },
+        ]
+      },
+      {
+        name: 'Data Warehousing (Snowflake, Databricks)',
+        percentage: 82,
+        usedIn: [
+          { project: 'Resume Optimizer (Snowflake)', icon: '🚀' },
+          { company: 'Accenture', project: 'Inventory Data Warehouse', icon: '📦' },
+        ]
+      },
     ],
   },
   {
@@ -112,9 +205,30 @@ const skillCategories = [
     title: 'Statistical Analysis',
     color: 'purple',
     skills: [
-      { name: 'A/B Testing & Hypothesis Testing', percentage: 90 },
-      { name: 'Time Series Forecasting & Regression', percentage: 88 },
-      { name: 'Feature Engineering & Model Optimization', percentage: 92 },
+      {
+        name: 'A/B Testing & Hypothesis Testing',
+        percentage: 90,
+        usedIn: [
+          { company: 'BCBS', project: 'Model Evaluation (AUC-ROC, Precision-Recall)', icon: '🏥' },
+          { company: 'Accenture', project: 'Promotional Strategy Testing', icon: '📦' },
+        ]
+      },
+      {
+        name: 'Time Series Forecasting & Regression',
+        percentage: 88,
+        usedIn: [
+          { company: 'Accenture', project: 'Demand Forecasting (86.3% accuracy)', icon: '📦' },
+          { project: 'School Similarity (Regression Analysis)', icon: '🎓' },
+        ]
+      },
+      {
+        name: 'Feature Engineering & Model Optimization',
+        percentage: 92,
+        usedIn: [
+          { company: 'BCBS', project: 'Cross-validation, Grid Search', icon: '🏥' },
+          { company: 'Accenture', project: 'PCA, Random Search (8% improvement)', icon: '📦' },
+        ]
+      },
     ],
   },
 ];
