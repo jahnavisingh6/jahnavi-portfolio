@@ -4,12 +4,19 @@ import Image from 'next/image';
 import { FiHeart, FiStar, FiCode, FiBook, FiMail, FiArrowUp, FiGithub, FiLinkedin, FiClock, FiTool, FiCheckCircle, FiMapPin, FiBriefcase } from 'react-icons/fi';
 import { HiSparkles } from 'react-icons/hi';
 import emailjs from '@emailjs/browser';
+import StatsCounter from './components/StatsCounter';
+import SkillBar from './components/SkillBar';
+import Timeline from './components/Timeline';
 
 const projects = [
   {
     title: 'AI-Powered Resume Optimization Tool',
     timeline: 'Spring 2025',
     tech: 'Python, Flask, spaCy, PyResparser, PostgreSQL, Snowflake, AWS (S3, Lambda), OpenAI GPT API',
+    metrics: [
+      { label: 'Accuracy', value: '85%', icon: '🎯' },
+      { label: 'Response Time', value: '<3s', icon: '⚡' },
+    ],
     description: `This is a full-stack AI-driven web application designed to analyze resumes and job descriptions to enhance job seeker success. I built it to automate resume matching and optimize job application outcomes.\n\n• Used PyResparser and spaCy to extract skills, experiences, and metadata from resumes and job descriptions.\n• Developed an NLP-powered similarity engine (TF-IDF + cosine similarity) to calculate match scores between resumes and job listings.\n• Integrated OpenAI's GPT API to provide personalized content improvement suggestions like keyword insertion, grammar improvements, and achievement phrasing.\n• Built the frontend in Flask and hosted the app using AWS Lambda and S3, enabling scalable performance.\n• Designed and managed PostgreSQL and Snowflake databases for structured data and user profiles.\n• Achieved over 85% skill extraction accuracy, with match suggestions and updates rendered in under 3 seconds.`,
     result: '🚀 Result: Provided users with actionable insights on resume improvement, matching their profiles to job posts more intelligently and quickly.'
   },
@@ -17,6 +24,10 @@ const projects = [
     title: 'School Similarity Matching Model',
     timeline: 'Spring 2024',
     tech: 'Python, scikit-learn, pandas, KNN, K-means, t-SNE, cosine similarity',
+    metrics: [
+      { label: 'Accuracy', value: '89%', icon: '🎯' },
+      { label: 'Schools', value: '300+', icon: '🏫' },
+    ],
     description: `Designed to help users discover similar schools based on academic and geographic data.\n\n• Cleaned and preprocessed a dataset of 300+ schools using pandas.\n• Engineered a similarity pipeline using KNN and cosine similarity to find schools that matched user preferences.\n• Applied K-means clustering to group similar institutions based on feature vectors.\n• Used t-SNE for dimensionality reduction and visual clustering to better understand relationships in data.`,
     result: '🎓 Result: Achieved 89% similarity accuracy, enabling useful data-driven recommendations for students or policy makers.'
   },
@@ -24,6 +35,10 @@ const projects = [
     title: 'Data Visualization & Reporting for Coffee Shop Chain',
     timeline: 'Spring 2024',
     tech: 'Tableau, Power BI, Tableau Prep Builder, Excel',
+    metrics: [
+      { label: 'Transactions', value: '149K+', icon: '📊' },
+      { label: 'Dashboards', value: '11+', icon: '📈' },
+    ],
     description: `Worked on visualizing and analyzing over 149,000+ transactions from a chain of coffee shops to uncover business insights.\n\n• Conducted ETL (Extract, Transform, Load) using Tableau Prep Builder and Power Query in Excel.\n• Created interactive dashboards in Power BI and Tableau that allowed slicing by revenue, region, products, time, and customer segments.\n• Included visual KPIs, weekly trends, anomalies, and performance summaries for management.`,
     result: '☕ Result: Helped stakeholders understand key revenue drivers and optimize product mix and inventory decisions.'
   },
@@ -31,6 +46,10 @@ const projects = [
     title: 'Hotel Reservation System Database',
     timeline: 'Fall 2023',
     tech: 'PostgreSQL',
+    metrics: [
+      { label: 'Tables', value: 'Multi-table', icon: '🗄️' },
+      { label: 'Automation', value: 'Triggers', icon: '⚙️' },
+    ],
     description: `Built a fully relational hotel reservation database with robust backend functionality.\n\n• Designed multi-table schema to manage rooms, customers, bookings, payments, and services.\n• Developed stored procedures for automated operations like booking updates, check-ins, and cancellations.\n• Created triggers for auto-calculating revenue and room occupancy rates.\n• Optimized queries for reporting real-time statistics on revenue, occupancy, and guest history.`,
     result: '🏨 Result: Simulated a real-world backend for a hotel management system, improving operations and reporting accuracy.'
   },
@@ -38,81 +57,65 @@ const projects = [
     title: 'SIDS Monitoring System (IoT Project)',
     timeline: 'Fall 2022',
     tech: 'Python, Raspberry Pi, sensors, Android App (MIT App Inventor)',
+    metrics: [
+      { label: 'Monitoring', value: 'Real-time', icon: '⏱️' },
+      { label: 'Alerts', value: 'Instant', icon: '🔔' },
+    ],
     description: `Developed a Sudden Infant Death Syndrome (SIDS) prevention system using IoT and mobile tech.\n\n• Integrated sensors on Raspberry Pi to monitor infant vital signs such as heartbeat and temperature.\n• Developed an Android app that connected with the device to display real-time data.\n• Built logic for anomaly detection and push alerts to caregivers during emergencies.\n• Implemented cloud data storage for historical data access.`,
     result: '👶 Result: Created a potentially life-saving product concept with real-time monitoring and alerting.'
   },
 ];
 
-const skills = [
-  {
-    icon: '⚙️',
-    title: 'Methodologies',
-    tags: [
-      'Agile (Scrum)', 'SDLC', 'A/B Testing', 'Statistical Analysis', 'Data Storytelling'
-    ],
-    color: 'skill-tag-pink',
-  },
+const skillCategories = [
   {
     icon: '🧑‍💻',
-    title: 'Programming & Scripting',
-    tags: [
-      'Python', 'NumPy', 'Pandas', 'Scikit-Learn', 'PyTorch', 'TensorFlow', 'spaCy', 'OpenCV', 'PyResparser',
-      'R', 'SQL', 'Bash'
+    title: 'Programming & Data Science',
+    color: 'pink',
+    skills: [
+      { name: 'Python (Pandas, NumPy, Scikit-Learn)', percentage: 95 },
+      { name: 'SQL (PostgreSQL, MySQL, Snowflake)', percentage: 90 },
+      { name: 'R & Statistical Computing', percentage: 80 },
     ],
-    color: 'skill-tag-lavender',
-  },
-  {
-    icon: '🗂️',
-    title: 'Data Engineering & Databases',
-    tags: [
-      'PostgreSQL', 'MySQL', 'Snowflake', 'Oracle', 'MongoDB', 'Databricks', 'Kafka', 'Hadoop',
-      'Flask', 'FastAPI', 'REST APIs', 'ETL Pipelines', 'Apache Airflow', 'Data Warehousing', 'Data Lakes (AWS S3)'
-    ],
-    color: 'skill-tag-peach',
-  },
-  {
-    icon: '☁️',
-    title: 'Cloud & DevOps',
-    tags: [
-      'AWS (S3, Lambda, Redshift, EMR, Kinesis, Firehose, IAM, SageMaker)', 'Microsoft Azure', 'Docker', 'Git', 'GitHub'
-    ],
-    color: 'skill-tag-pink',
   },
   {
     icon: '🧠',
     title: 'Machine Learning & AI',
-    tags: [
-      'Supervised & Unsupervised Learning', 'Feature Engineering', 'Regression', 'Random Forest', 'XGBoost', 'Gradient Boosting',
-      'KNN', 'K-Means Clustering', 't-SNE', 'PCA', 'CNN Modeling', 'Anomaly Detection'
+    color: 'purple',
+    skills: [
+      { name: 'Supervised & Unsupervised Learning', percentage: 92 },
+      { name: 'Deep Learning (PyTorch, TensorFlow, CNN)', percentage: 88 },
+      { name: 'NLP & LLMs (spaCy, LangChain, GPT APIs)', percentage: 85 },
     ],
-    color: 'skill-tag-lavender',
-  },
-  {
-    icon: '💬',
-    title: 'Natural Language Processing',
-    tags: [
-      'LLMs', 'Prompt Engineering', 'LangChain', 'OpenAI GPT APIs', 'spaCy', 'PyResparser', 'TF-IDF',
-      'Cosine Similarity', 'Knowledge Graphs', 'NER'
-    ],
-    color: 'skill-tag-peach',
   },
   {
     icon: '📊',
-    title: 'Statistical & Analytical Modeling',
-    tags: [
-      'Hypothesis Testing', 'Regression Analysis', 'Time Series Forecasting', 'A/B Testing',
-      'ANOVA', 'Chi-Square', 'T-Test', 'Correlation Analysis'
+    title: 'Data Visualization & BI',
+    color: 'orange',
+    skills: [
+      { name: 'Tableau & Power BI', percentage: 90 },
+      { name: 'Python Visualization (Matplotlib, Seaborn)', percentage: 88 },
+      { name: 'Advanced Excel & Data Storytelling', percentage: 85 },
     ],
-    color: 'skill-tag-pink',
+  },
+  {
+    icon: '🗂️',
+    title: 'Data Engineering & Cloud',
+    color: 'pink',
+    skills: [
+      { name: 'AWS (S3, Lambda, SageMaker, Redshift)', percentage: 87 },
+      { name: 'ETL Pipelines (Airflow, SSIS, FastAPI)', percentage: 85 },
+      { name: 'Data Warehousing (Snowflake, Databricks)', percentage: 82 },
+    ],
   },
   {
     icon: '📈',
-    title: 'Data Visualization & BI',
-    tags: [
-      'Tableau', 'Power BI', 'Tableau Prep Builder', 'SSIS', 'Matplotlib', 'Seaborn', 'ggplot2',
-      'Advanced Excel (Pivot, VLOOKUP, Macros)'
+    title: 'Statistical Analysis',
+    color: 'purple',
+    skills: [
+      { name: 'A/B Testing & Hypothesis Testing', percentage: 90 },
+      { name: 'Time Series Forecasting & Regression', percentage: 88 },
+      { name: 'Feature Engineering & Model Optimization', percentage: 92 },
     ],
-    color: 'skill-tag-lavender',
   },
 ];
 
@@ -375,6 +378,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Statistics Dashboard */}
+      <StatsCounter />
+
       {/* About Section */}
       <section id="about" className="py-20 bg-white/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -438,17 +444,23 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title">
             <FiStar className="section-title-icon" />
-            Technical Skills
+            Technical Skills & Proficiency
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skills.map((group, idx) => (
-              <div key={group.title} className="card">
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                  <span className="text-2xl">{group.icon}</span> {group.title}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {skillCategories.map((category, idx) => (
+              <div key={category.title} className="card">
+                <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                  <span className="text-2xl">{category.icon}</span> {category.title}
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {group.tags.map((skill, i) => (
-                    <span key={i} className={`skill-tag ${group.color}`}>{skill}</span>
+                <div className="space-y-4">
+                  {category.skills.map((skill, i) => (
+                    <SkillBar
+                      key={i}
+                      skill={skill.name}
+                      percentage={skill.percentage}
+                      color={category.color}
+                      delay={i * 100}
+                    />
                   ))}
                 </div>
               </div>
@@ -462,10 +474,28 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title">
             <FiCode className="section-title-icon" />
-            Experience
+            Professional Experience
           </h2>
-          <div className="space-y-12">
-            {experiences.map((exp, idx) => (
+
+          {/* Visual Timeline */}
+          <div className="mb-16">
+            <Timeline
+              items={experiences.map((exp, idx) => ({
+                company: exp.company,
+                role: exp.role,
+                duration: exp.duration,
+                location: exp.location,
+                icon: exp.icon,
+                current: idx === 0,
+              }))}
+            />
+          </div>
+
+          {/* Detailed Experience */}
+          <div className="mt-12">
+            <h3 className="text-2xl font-semibold text-gray-800 mb-8 text-center">Detailed Project Contributions</h3>
+            <div className="space-y-12">
+              {experiences.map((exp, idx) => (
               <div key={exp.company} className="relative">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-2xl">{exp.icon}</span>
@@ -512,7 +542,20 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, idx) => (
-              <div key={project.title} className="card relative">
+              <div key={project.title} className="card relative overflow-hidden">
+                {/* Key Metrics Banner */}
+                <div className="flex gap-2 mb-4">
+                  {project.metrics.map((metric, i) => (
+                    <div key={i} className="flex-1 bg-gradient-to-br from-pink-50 to-purple-50 rounded-lg p-3 border border-pink-200">
+                      <div className="text-2xl mb-1">{metric.icon}</div>
+                      <div className="text-2xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+                        {metric.value}
+                      </div>
+                      <div className="text-xs text-gray-600 font-medium">{metric.label}</div>
+                    </div>
+                  ))}
+                </div>
+
                 <div className="flex items-center gap-2 mb-2">
                   <FiBook className="text-pink-400" />
                   <h3 className="text-xl font-semibold text-gray-800 mb-0">{project.title}</h3>
@@ -521,16 +564,16 @@ export default function Home() {
                   <FiClock />
                   <span>{project.timeline}</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-purple-500 mb-2">
+                <div className="flex items-center gap-2 text-sm text-purple-500 mb-4">
                   <FiTool />
-                  <span>{project.tech}</span>
+                  <span className="line-clamp-2">{project.tech}</span>
                 </div>
-                <div className="text-gray-600 whitespace-pre-line mb-2">
+                <div className="text-gray-600 whitespace-pre-line mb-4 text-sm">
                   {project.description}
                 </div>
-                <div className="text-green-600 font-medium flex items-center gap-2">
-                  <FiCheckCircle className="text-green-400" />
-                  <span>{project.result}</span>
+                <div className="text-green-600 font-medium flex items-center gap-2 bg-green-50 p-3 rounded-lg">
+                  <FiCheckCircle className="text-green-400 flex-shrink-0" />
+                  <span className="text-sm">{project.result}</span>
                 </div>
               </div>
             ))}
