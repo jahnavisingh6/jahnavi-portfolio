@@ -1,45 +1,62 @@
 # Jahnavi Singh's Portfolio
 
-A beautiful, Pinterest-style portfolio website showcasing data science projects, skills, and experience. Built with Next.js, TypeScript, and Tailwind CSS.
+A beautiful, modern portfolio website showcasing data science, machine learning, and AI projects. Built with Next.js, TypeScript, and Tailwind CSS.
 
 ## Features
 
-- Responsive design with a Pinterest-style masonry grid layout
-- Beautiful animations and transitions
-- Project showcase with detailed cards
-- Skills section with interactive tags
-- Experience timeline
-- Certifications display
-- Contact form
-- Mobile-friendly navigation
+- ✨ Responsive design with beautiful animations
+- 📊 Project showcase with detailed descriptions
+- 🎯 Skills section organized by category
+- 💼 Professional experience timeline
+- 📧 **Working contact form** with EmailJS integration
+- 📄 Resume download button
+- 📱 Mobile-friendly navigation
+- 🎨 Gradient color scheme with smooth transitions
 
 ## Tech Stack
 
 - Next.js 14
 - TypeScript
 - Tailwind CSS
+- EmailJS (for contact form)
+- React Icons
 - Framer Motion
-- React Intersection Observer
 
 ## Getting Started
 
-1. Clone the repository:
+### 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd portfolio
+cd jahnavi-portfolio
 ```
 
-2. Install dependencies:
+### 2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Run the development server:
+### 3. Set up EmailJS for contact form:
+See [EMAILJS_SETUP.md](./EMAILJS_SETUP.md) for detailed instructions.
+
+Quick setup:
+```bash
+# Copy environment template
+cp .env.local.example .env.local
+
+# Edit .env.local and add your EmailJS credentials
+# Get credentials from https://www.emailjs.com/
+```
+
+### 4. Add your resume (optional):
+Place your resume as `resume.pdf` in the `/public` folder for the download button to work.
+
+### 5. Run the development server:
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+### 6. Open your browser:
+Visit [http://localhost:3000](http://localhost:3000) to see the portfolio.
 
 ## Project Structure
 
