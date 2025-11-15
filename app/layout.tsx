@@ -4,8 +4,8 @@ import './globals.css'
 import Navbar from './components/Navbar'
 
 export const metadata: Metadata = {
-  title: 'Jahnavi Singh | Data Analyst | 3.5 Years Experience',
-  description: 'Data Analyst with 3.5 years of experience in healthcare analytics, machine learning, and data visualization. Managed 1M+ records, deployed 20+ ML models achieving 90% accuracy. Proficient in Python, SQL, Tableau, Power BI, AWS, and Azure. Currently at Blue Cross Blue Shield.',
+  title: 'Jahnavi Singh | Data Analyst & Data Scientist | ML, NLP & AI',
+  description: 'Data Analyst & aspiring Data Scientist with 3.5 years of experience specializing in Machine Learning, NLP, and AI. Deployed 20+ ML models achieving 90% accuracy. Expert in Python, SQL, TensorFlow, PyTorch, AWS, and Azure. Currently at Blue Cross Blue Shield working on healthcare analytics and predictive modeling.',
 }
 
 export default function RootLayout({

@@ -1,8 +1,9 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import Image from 'next/image';
 import { FiHeart, FiStar, FiCode, FiBook, FiMail, FiArrowUp, FiGithub, FiLinkedin, FiClock, FiTool, FiCheckCircle, FiMapPin, FiBriefcase } from 'react-icons/fi';
 import { HiSparkles } from 'react-icons/hi';
+import emailjs from '@emailjs/browser';
 
 const projects = [
   {
@@ -148,6 +149,46 @@ const experiences = [
     ]
   },
   {
+    company: 'AI4M Technology Pvt. Ltd.',
+    role: 'Machine Vision & Automation Intern',
+    duration: 'January 2023 – July 2023',
+    location: 'Pune, India',
+    focus: 'Computer Vision, Deep Learning, CNN, Real-time Systems, AWS, PostgreSQL, Embedded Hardware',
+    icon: '💼',
+    projects: [
+      {
+        name: 'Online Coating Weight Estimation System (OCWES)',
+        color: 'bg-purple-50',
+        goal: 'Automate the measurement and reporting of coating weights in manufacturing using image processing and machine learning.',
+        contributions: [
+          'Built a Python-based automation pipeline for generating coating reports using the fpdf library.',
+          'Integrated the report system with AWS S3 for secure storage and Lambda to trigger email alerts, cutting down manual intervention significantly.',
+          'Developed and optimized a PostgreSQL database schema to store, retrieve, and query coating weight data for each batch.',
+          'Used PyTorch, OpenCV, and NumPy to preprocess spectroscopic images, applying filters like Gaussian blur and edge detection to enhance feature clarity.',
+          'Trained a regression-based convolutional neural network (CNN) to estimate continuous coating weights from visual input data — this eliminated the need for manual binning or operator inference.',
+          'Worked on high-speed data collection from hardware-integrated systems such as Raspberry Pi and Tinker Boards, improving sampling accuracy.',
+          'Ensured precise calibration of spectroscope sensors and built logic for real-time scientific data acquisition.'
+        ],
+        impact: '🧪 Impact: Reduced manual QA processes by over 70% and enabled scalable, automated quality control for a production environment.'
+      },
+      {
+        name: 'Automated Surface Inspection',
+        color: 'bg-yellow-50',
+        goal: 'Replace manual defect inspection with an AI-powered, real-time system for surface quality assurance.',
+        contributions: [
+          'Designed a real-time video processing pipeline using segmentation models to detect multiple types of surface defects.',
+          'Integrated machine vision cameras with hardware systems to capture high-resolution, real-time frames.',
+          'Applied ROI (Region of Interest) extraction and image enhancement techniques (noise filtering, contrast enhancement) using OpenCV to isolate problem areas.',
+          'Cleaned and structured data using NumPy and pandas for training and evaluation.',
+          'Implemented Kafka for streaming sensor and image data in real-time, ensuring low-latency updates across distributed systems.',
+          'Used ZeroMQ (ZMQ) as a lightweight message-passing interface to enable high-speed communication between system modules.',
+          'Collaborated on point cloud creation using laser-based profiling to capture surface texture in 3D.'
+        ],
+        impact: '⚙️ Impact: Increased defect detection accuracy by 75%, enabling real-time alerts and reducing inspection delays and quality lapses on the production line.'
+      }
+    ]
+  },
+  {
     company: 'Accenture',
     role: 'Data Analyst',
     duration: 'April 2021 – January 2023',
@@ -177,6 +218,13 @@ const experiences = [
 
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [formMessage, setFormMessage] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -189,6 +237,52 @@ export default function Home() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('sending');
+    setFormMessage('');
+
+    // Validate form
+    if (!formData.name || !formData.email || !formData.message) {
+      setFormStatus('error');
+      setFormMessage('Please fill in all fields.');
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setFormStatus('error');
+      setFormMessage('Please enter a valid email address.');
+      return;
+    }
+
+    // Simple mailto fallback - this will open the user's email client
+    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    const mailtoLink = `mailto:jahnavisingh6@gmail.com?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
+
+    setFormStatus('success');
+    setFormMessage('Opening your email client... If it doesn\'t open, please email me directly at jahnavisingh6@gmail.com');
+
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      setFormData({ name: '', email: '', message: '' });
+      setFormStatus('idle');
+      setFormMessage('');
+    }, 3000);
   };
 
   return (
@@ -211,7 +305,7 @@ export default function Home() {
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-4 flex items-center justify-center gap-2">
             <HiSparkles className="text-pink-400" />
-            Data Analyst | 3.5 Years Experience
+            Data Analyst & Data Scientist | ML, NLP & AI
             <HiSparkles className="text-pink-400" />
           </p>
           <div className="flex items-center justify-center gap-4 mb-8 text-gray-600">
@@ -223,7 +317,7 @@ export default function Home() {
               (602) 574-3737
             </a>
           </div>
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 mb-8">
             <a
               href="https://linkedin.com/in/jahnavisingh6"
               target="_blank"
@@ -241,6 +335,20 @@ export default function Home() {
               <FiGithub className="w-6 h-6 text-gray-600 hover:text-pink-400" />
             </a>
           </div>
+          <div className="flex justify-center">
+            <a
+              href="/resume.pdf"
+              download
+              className="px-8 py-3 rounded-xl bg-gradient-to-r from-pink-400 to-purple-400
+              text-white font-medium hover:from-purple-400 hover:to-pink-400 transition-all duration-300
+              hover:shadow-lg shadow-pink-200/50 flex items-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download Resume
+            </a>
+          </div>
         </div>
       </section>
 
@@ -253,13 +361,13 @@ export default function Home() {
           </h2>
           <div className="card">
             <p className="text-lg text-gray-600 leading-relaxed mb-4">
-              Data Analyst with <strong>3.5 years of experience</strong> in data analytics, predictive modeling, machine learning, data visualization, and cloud computing. Currently pursuing my Master's in Information Technology at Arizona State University (GPA: 3.87/4.0).
+              Data Analyst & aspiring Data Scientist with <strong>3.5 years of experience</strong> in data analytics, predictive modeling, machine learning, data visualization, and cloud computing. Currently pursuing my Master's in Information Technology at Arizona State University (GPA: 3.87/4.0), specializing in <strong>Machine Learning, Natural Language Processing, and AI</strong>.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed mb-4">
-              Proficient in Python, SQL, Tableau, Power BI, AWS, and Azure to drive data-driven decision-making. Skilled in ETL pipeline development, statistical analysis, and building scalable ML models.
+              Passionate about leveraging <strong>ML, NLP, and AI technologies</strong> to solve complex real-world problems. Proficient in Python, SQL, Tableau, Power BI, AWS, and Azure to drive data-driven decision-making. Skilled in ETL pipeline development, statistical analysis, building scalable ML models, and deploying deep learning solutions for computer vision and language understanding.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
-              <strong>Key Achievements:</strong> Managed datasets exceeding 1M+ records, deployed 20+ machine learning models to improve forecasting and operational efficiency, optimized workflows to reduce data processing time by 30%, and built 11+ interactive dashboards that delivered actionable insights to business stakeholders.
+              <strong>Key Achievements:</strong> Managed datasets exceeding 1M+ records, deployed 20+ machine learning models to improve forecasting and operational efficiency, optimized workflows to reduce data processing time by 30%, and built 11+ interactive dashboards that delivered actionable insights to business stakeholders. Experienced in developing CNN models for image analysis and implementing LLM-based solutions for intelligent automation.
             </p>
           </div>
         </div>
@@ -415,7 +523,7 @@ export default function Home() {
             Let's Connect
           </h2>
           <div className="card">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
                 <input
@@ -423,6 +531,8 @@ export default function Home() {
                   id="name"
                   className="input-field"
                   placeholder="Your name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   required
                 />
               </div>
@@ -433,6 +543,8 @@ export default function Home() {
                   id="email"
                   className="input-field"
                   placeholder="your.email@example.com"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   required
                 />
               </div>
@@ -443,17 +555,33 @@ export default function Home() {
                   rows={4}
                   className="input-field"
                   placeholder="Write your message here..."
+                  value={formData.message}
+                  onChange={handleInputChange}
                   required
                 ></textarea>
               </div>
+
+              {/* Status Messages */}
+              {formMessage && (
+                <div className={`p-4 rounded-lg ${
+                  formStatus === 'success' ? 'bg-green-50 text-green-700' :
+                  formStatus === 'error' ? 'bg-red-50 text-red-700' :
+                  'bg-blue-50 text-blue-700'
+                }`}>
+                  {formMessage}
+                </div>
+              )}
+
               <button
                 type="submit"
+                disabled={formStatus === 'sending'}
                 className="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-pink-400 to-purple-400
                 text-white font-medium hover:from-purple-400 hover:to-pink-400 transition-all duration-300
-                hover:shadow-lg shadow-pink-200/50 flex items-center justify-center gap-2"
+                hover:shadow-lg shadow-pink-200/50 flex items-center justify-center gap-2
+                disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <FiHeart className="w-5 h-5" />
-                Send Message
+                {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
