@@ -51,21 +51,19 @@ const projects = [
 
 const skills = [
   {
-    icon: '🧑‍💻',
-    title: 'Programming Languages',
+    icon: '⚙️',
+    title: 'Methodologies',
     tags: [
-      'Python (Advanced)', 'PyTorch', 'OpenCV', 'pandas', 'NumPy', 'scikit-learn', 'spaCy', 'PyResparser', 'fpdf', 'Matplotlib', 'pytesseract',
-      'SQL (PostgreSQL, MySQL)', 'R', 'Bash', 'JavaScript', 'HTML', 'CSS', 'Bootstrap (basic)'
+      'Agile (Scrum)', 'SDLC', 'A/B Testing', 'Statistical Analysis', 'Data Storytelling'
     ],
     color: 'skill-tag-pink',
   },
   {
-    icon: '🧠',
-    title: 'Machine Learning & AI',
+    icon: '🧑‍💻',
+    title: 'Programming & Scripting',
     tags: [
-      'Regression-based CNN', 'KNN', 'K-Means Clustering', 't-SNE', 'TF-IDF', 'Cosine Similarity', 'Euclidean Distance',
-      'Time Series Analysis', 'Precision', 'Recall', 'F1 Score', 'Feature Engineering', 'Data Cleaning', 'Dimensionality Reduction',
-      'Resume Matching', 'NLP Pipelines', 'Statistical Analysis', 'A/B Testing', 'OCR', 'Anomaly Detection'
+      'Python', 'NumPy', 'Pandas', 'Scikit-Learn', 'PyTorch', 'TensorFlow', 'spaCy', 'OpenCV', 'PyResparser',
+      'R', 'SQL', 'Bash'
     ],
     color: 'skill-tag-lavender',
   },
@@ -73,49 +71,52 @@ const skills = [
     icon: '🗂️',
     title: 'Data Engineering & Databases',
     tags: [
-      'PostgreSQL (Schema, Procedures, Triggers)', 'MySQL', 'Snowflake', 'AWS S3', 'AWS Lambda', 'Flask REST APIs',
-      'JSON + API integration', 'ETL: Tableau Prep', 'pandas', 'Excel'
+      'PostgreSQL', 'MySQL', 'Snowflake', 'Oracle', 'MongoDB', 'Databricks', 'Kafka', 'Hadoop',
+      'Flask', 'FastAPI', 'REST APIs', 'ETL Pipelines', 'Apache Airflow', 'Data Warehousing', 'Data Lakes (AWS S3)'
     ],
     color: 'skill-tag-peach',
-  },
-  {
-    icon: '📊',
-    title: 'Data Visualization & BI',
-    tags: [
-      'Power BI', 'Tableau', 'Tableau Prep Builder', 'Excel (Pivot, VLOOKUP, Macros)', 'Matplotlib', 'Seaborn'
-    ],
-    color: 'skill-tag-pink',
   },
   {
     icon: '☁️',
     title: 'Cloud & DevOps',
     tags: [
-      'AWS: S3, Lambda, EC2, Redshift, EMR, Kinesis, Firehose, IAM', 'Docker (basic)', 'Git & GitHub', 'Heroku', 'Kafka', 'ZeroMQ', 'Databricks', 'GCP (learning)'
-    ],
-    color: 'skill-tag-lavender',
-  },
-  {
-    icon: '🧠',
-    title: 'Natural Language Processing',
-    tags: [
-      'spaCy', 'PyResparser', 'TF-IDF', 'Cosine Similarity', 'OpenAI GPT APIs', 'Resume Parsing', 'ChatGPT', 'NER'
-    ],
-    color: 'skill-tag-peach',
-  },
-  {
-    icon: '🔧',
-    title: 'Tools & IDEs',
-    tags: [
-      'Jupyter Notebook', 'Anaconda', 'VS Code', 'MS Office (Excel)', 'Photoshop', 'Canva'
+      'AWS (S3, Lambda, Redshift, EMR, Kinesis, Firehose, IAM, SageMaker)', 'Microsoft Azure', 'Docker', 'Git', 'GitHub'
     ],
     color: 'skill-tag-pink',
   },
   {
-    icon: '🤖',
-    title: 'Embedded / IoT & Image Systems',
+    icon: '🧠',
+    title: 'Machine Learning & AI',
     tags: [
-      'Raspberry Pi', 'Tinker Board integration', 'Spectroscope programming', 'Camera-based inspection systems',
-      'Machine vision cameras', 'Point Cloud (laser profiling)', 'Real-time image streaming (OpenCV)', 'IoT-based monitoring (SIDS)'
+      'Supervised & Unsupervised Learning', 'Feature Engineering', 'Regression', 'Random Forest', 'XGBoost', 'Gradient Boosting',
+      'KNN', 'K-Means Clustering', 't-SNE', 'PCA', 'CNN Modeling', 'Anomaly Detection'
+    ],
+    color: 'skill-tag-lavender',
+  },
+  {
+    icon: '💬',
+    title: 'Natural Language Processing',
+    tags: [
+      'LLMs', 'Prompt Engineering', 'LangChain', 'OpenAI GPT APIs', 'spaCy', 'PyResparser', 'TF-IDF',
+      'Cosine Similarity', 'Knowledge Graphs', 'NER'
+    ],
+    color: 'skill-tag-peach',
+  },
+  {
+    icon: '📊',
+    title: 'Statistical & Analytical Modeling',
+    tags: [
+      'Hypothesis Testing', 'Regression Analysis', 'Time Series Forecasting', 'A/B Testing',
+      'ANOVA', 'Chi-Square', 'T-Test', 'Correlation Analysis'
+    ],
+    color: 'skill-tag-pink',
+  },
+  {
+    icon: '📈',
+    title: 'Data Visualization & BI',
+    tags: [
+      'Tableau', 'Power BI', 'Tableau Prep Builder', 'SSIS', 'Matplotlib', 'Seaborn', 'ggplot2',
+      'Advanced Excel (Pivot, VLOOKUP, Macros)'
     ],
     color: 'skill-tag-lavender',
   },
@@ -123,64 +124,52 @@ const skills = [
 
 const experiences = [
   {
-    company: 'AI4M Technology Pvt. Ltd.',
-    role: 'Machine Vision & Automation Intern',
-    duration: 'January 2023 – July 2023',
-    location: 'Pune, India',
-    focus: 'Computer Vision, Automation, Deep Learning, Real-time Systems, AWS, PostgreSQL, Embedded Hardware',
-    icon: '💼',
+    company: 'Blue Cross Blue Shield',
+    role: 'Data Analyst',
+    duration: 'August 2024 – Present',
+    location: 'USA',
+    focus: 'Healthcare Analytics, Machine Learning, HIPAA Compliance, ETL Workflows, Predictive Modeling, Data Visualization',
+    icon: '🏥',
     projects: [
       {
-        name: 'Online Coating Weight Estimation System (OCWES)',
-        color: 'bg-purple-50',
-        goal: 'Automate the measurement and reporting of coating weights in manufacturing using image processing and machine learning.',
+        name: 'Medicare Advantage Patient Risk Prediction & Churn Analysis',
+        color: 'bg-blue-50',
+        goal: 'Analyze de-identified EHRs and billing data to identify factors contributing to patient churn and disengagement across 50 states.',
         contributions: [
-          'Built a Python-based automation pipeline for generating coating reports using the fpdf library.',
-          'Integrated the report system with AWS S3 for secure storage and Lambda to trigger email alerts, cutting down manual intervention significantly.',
-          'Developed and optimized a PostgreSQL database schema to store, retrieve, and query coating weight data for each batch.',
-          'Used PyTorch, OpenCV, and NumPy to preprocess spectroscopic images, applying filters like Gaussian blur and edge detection to enhance feature clarity.',
-          'Trained a regression-based convolutional neural network (CNN) to estimate continuous coating weights from visual input data — this eliminated the need for manual binning or operator inference.',
-          'Worked on high-speed data collection from hardware-integrated systems such as Raspberry Pi and Tinker Boards, improving sampling accuracy.',
-          'Ensured precise calibration of spectroscope sensors and built logic for real-time scientific data acquisition.'
+          'Led a HIPAA-compliant, cross-functional project analyzing electronic health records (EHRs), billing systems, and patient interaction datasets.',
+          'Designed and maintained ETL workflows using SSIS to extract, transform, and load large-scale clinical and administrative datasets into AWS S3, ensuring data integrity and compliance.',
+          'Developed and fine-tuned multi-algorithm patient risk prediction models using Logistic Regression, Random Forest, and XGBoost, achieving 90% accuracy.',
+          'Conducted rigorous model evaluation using cross-validation, AUC-ROC curves, precision-recall analysis, and confusion matrices, increasing predictive reliability by 2%.',
+          'Implemented data versioning and model monitoring in AWS S3 and SageMaker, tracking data lineage, detecting model drift, and enabling automated retraining.',
+          'Built comprehensive Power BI dashboards visualizing patient risk trends, disease progression, and intervention effectiveness for 25+ healthcare stakeholders.'
         ],
-        impact: '🧪 Impact: Reduced manual QA processes by over 70% and enabled scalable, automated quality control for a production environment.'
-      },
-      {
-        name: 'Automated Surface Inspection',
-        color: 'bg-yellow-50',
-        goal: 'Replace manual defect inspection with an AI-powered, real-time system for surface quality assurance.',
-        contributions: [
-          'Designed a real-time video processing pipeline using segmentation models to detect multiple types of surface defects.',
-          'Integrated machine vision cameras with hardware systems to capture high-resolution, real-time frames.',
-          'Applied ROI (Region of Interest) extraction and image enhancement techniques (noise filtering, contrast enhancement) using OpenCV to isolate problem areas.',
-          'Cleaned and structured data using NumPy and pandas for training and evaluation.',
-          'Implemented Kafka for streaming sensor and image data in real-time, ensuring low-latency updates across distributed systems.',
-          'Used ZeroMQ (ZMQ) as a lightweight message-passing interface to enable high-speed communication between system modules.',
-          'Collaborated on point cloud creation using laser-based profiling to capture surface texture in 3D.'
-        ],
-        impact: '⚙️ Impact: Increased defect detection accuracy by 75%, enabling real-time alerts and reducing inspection delays and quality lapses on the production line.'
+        impact: '📊 Impact: Provided actionable insights on high-risk patient segments, influencing strategic care decisions and reducing patient churn.'
       }
     ]
   },
   {
-    company: 'S-Cube Storage Systems Pvt. Ltd.',
-    role: 'Infrastructure Intern',
-    duration: 'June 2022 – July 2022',
-    location: 'Pune, India',
-    focus: 'Storage Architecture, Data Security, Infrastructure Planning',
-    icon: '🧷',
+    company: 'Accenture',
+    role: 'Data Analyst',
+    duration: 'April 2021 – January 2023',
+    location: 'India',
+    focus: 'Inventory Optimization, Demand Forecasting, Machine Learning, ETL Pipelines, Statistical Analysis, Data Visualization',
+    icon: '📦',
     projects: [
       {
-        name: 'Infrastructure & Data Security',
-        color: 'bg-blue-50',
-        goal: 'Improve scalable storage and data security systems for mid-size clients.',
+        name: 'SKU-Level Demand Forecasting & Inventory Optimization',
+        color: 'bg-purple-50',
+        goal: 'Improve inventory planning by forecasting demand patterns for 100,000+ SKUs using machine learning.',
         contributions: [
-          'Assisted in analyzing client infrastructure needs for scalable storage and data security systems.',
-          'Helped design storage frameworks for backup, replication, and access control across distributed environments.',
-          'Supported the deployment of secure storage policies using access control rules and encryption methods.',
-          'Gained hands-on exposure to on-prem and hybrid cloud environments.'
+          'Analyzed historical sales and inventory data of 100,000+ SKUs to identify demand patterns, seasonality, and key factors influencing stock levels, leading to a 15–20% improvement in inventory planning.',
+          'Executed ETL pipelines using Python (Pandas, NumPy) and SQL, automating data preprocessing, cleaning, and feature engineering for 20+ variables, reducing manual effort by 80%.',
+          'Conducted variable transformations, correlation analysis, and statistical tests (ANOVA, Chi-Square, U-Test, T-Test) to uncover relationships between sales, promotions, and supply constraints.',
+          'Developed Machine Learning models (Linear Regression, Random Forest, Gradient Boosting) to forecast SKU-level demand, achieving predictive accuracy of 86.3%.',
+          'Optimized model performance using Grid Search, Random Search, and PCA, improving overall forecast accuracy by 8%.',
+          'Performed A/B testing on promotional strategies and inventory interventions to evaluate their impact on sales and stock efficiency.',
+          'Deployed forecasting models via FastAPI/Flask, enabling batch-wise inventory predictions for 20k+ SKUs per quarter.',
+          'Built interactive Tableau dashboards visualizing forecasted demand, stock levels, and reorder alerts for 25+ stakeholders.'
         ],
-        impact: '🛡️ Impact: Contributed to improving the company\'s ability to scale secure, reliable data infrastructure solutions for mid-size clients.'
+        impact: '🎯 Impact: Drove actionable insights for procurement and supply chain planning, optimizing inventory efficiency and reducing stockouts.'
       }
     ]
   }
@@ -222,7 +211,7 @@ export default function Home() {
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-4 flex items-center justify-center gap-2">
             <HiSparkles className="text-pink-400" />
-            Data-Driven Dreamer 💻✨
+            Data Analyst | 3.5 Years Experience
             <HiSparkles className="text-pink-400" />
           </p>
           <div className="flex items-center justify-center gap-4 mb-8 text-gray-600">
@@ -244,7 +233,7 @@ export default function Home() {
               <FiLinkedin className="w-6 h-6 text-gray-600 hover:text-pink-400" />
             </a>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/jahnavisingh6"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-white/80 hover:bg-pink-50 transition-all duration-300"
@@ -263,11 +252,14 @@ export default function Home() {
             About Me
           </h2>
           <div className="card">
+            <p className="text-lg text-gray-600 leading-relaxed mb-4">
+              Data Analyst with <strong>3.5 years of experience</strong> in data analytics, predictive modeling, machine learning, data visualization, and cloud computing. Currently pursuing my Master's in Information Technology at Arizona State University (GPA: 3.87/4.0).
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed mb-4">
+              Proficient in Python, SQL, Tableau, Power BI, AWS, and Azure to drive data-driven decision-making. Skilled in ETL pipeline development, statistical analysis, and building scalable ML models.
+            </p>
             <p className="text-lg text-gray-600 leading-relaxed">
-              I'm a passionate Data Scientist and AI Engineer pursuing my Master's in Information Technology at Arizona State University. 
-              With a strong foundation in machine learning, computer vision, and data engineering, I love creating innovative solutions 
-              that bridge the gap between data and real-world applications. When I'm not coding, you'll find me exploring new AI technologies 
-              and mentoring others in their tech journey! ✨
+              <strong>Key Achievements:</strong> Managed datasets exceeding 1M+ records, deployed 20+ machine learning models to improve forecasting and operational efficiency, optimized workflows to reduce data processing time by 30%, and built 11+ interactive dashboards that delivered actionable insights to business stakeholders.
             </p>
           </div>
         </div>
@@ -285,7 +277,7 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-1">Arizona State University</h3>
               <div className="text-pink-500 mb-1">Master of Science in Information Technology<br/>(Information Systems Management)</div>
               <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                <span>📍 Tempe, AZ</span> <span>—</span> <span>GPA: 3.87/4.0</span>
+                <span>📍 Tempe, AZ</span> <span>—</span> <span>Expected May 2025</span> <span>—</span> <span>GPA: 3.87/4.0</span>
               </div>
               <div className="text-sm text-purple-600 font-semibold mb-1">Relevant Coursework:</div>
               <ul className="list-disc list-inside text-gray-600 text-sm space-y-1">
@@ -303,7 +295,7 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-1">Symbiosis Institute of Technology</h3>
               <div className="text-pink-500 mb-1">B.Tech. in Electronics & Telecommunications</div>
               <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                <span>📍 Pune, India</span> <span>—</span> <span>GPA: 3.5/4.0</span>
+                <span>📍 Pune, India</span> <span>—</span> <span>Graduated May 2023</span> <span>—</span> <span>GPA: 3.5/4.0</span>
               </div>
             </div>
           </div>

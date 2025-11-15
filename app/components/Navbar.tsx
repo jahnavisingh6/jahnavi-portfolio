@@ -17,6 +17,7 @@ export default function Navbar() {
   const navItems = [
     { href: '#', icon: <FiHome />, label: 'Home' },
     { href: '#about', icon: <FiUser />, label: 'About' },
+    { href: '#education', icon: <FiBook />, label: 'Education' },
     { href: '#skills', icon: <FiStar />, label: 'Skills' },
     { href: '#experience', icon: <FiCode />, label: 'Experience' },
     { href: '#projects', icon: <FiBook />, label: 'Projects' },
