@@ -1,0 +1,14 @@
+RESUME DOWNLOAD BUTTON SETUP
+=============================
+
+The portfolio now has a "Download Resume" button on the homepage.
+
+TO MAKE IT WORK:
+1. Save your resume as a PDF file
+2. Rename it to "resume.pdf" (all lowercase)
+3. Place it in this /public folder (same location as this file)
+4. The download button will automatically work
+
+The button is located in the hero section below your social media links.
+
+If you don't add a resume.pdf file, the button will show a 404 error when clicked.
